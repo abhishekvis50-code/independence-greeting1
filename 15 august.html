@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>15 August Greeting</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background: linear-gradient(135deg, #ff9933, white, #138808);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed; /* keeps it full screen even on scroll */
+        height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .gif-top {
+        margin-top: 20px;
+        width: 200px;
+        height: auto;
+    }
+
+    h1 {
+        color: #000;
+        font-size: 2.5rem;
+        margin-top: 20px;
+    }
+
+    input {
+        padding: 10px;
+        font-size: 1rem;
+        width: 250px;
+        border-radius: 5px;
+        border: 2px solid #333;
+        text-align: center;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 1rem;
+        margin-top: 15px;
+        border: none;
+        border-radius: 5px;
+        background: #ff9933;
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #e68228;
+    }
+
+    .glow-text {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-top: 20px;
+        color: gold;
+        text-shadow: 0 0 5px gold, 0 0 10px orange, 0 0 20px red;
+        animation: glow 1.5s infinite alternate;
+    }
+
+    @keyframes glow {
+        from { text-shadow: 0 0 5px gold, 0 0 10px orange, 0 0 20px red; }
+        to { text-shadow: 0 0 10px gold, 0 0 20px orange, 0 0 40px red; }
+    }
+</style>
+</head>
+<body>
+
+<img src="15 august gif.gif" alt="Independence Day GIF" class="gif-top">
+
+<h1>🇮🇳 Happy Independence Day 🇮🇳</h1>
+<p>Enter your name to get your glowing wish</p>
+<input type="text" id="nameInput" placeholder="Enter your name">
+<br>
+<button onclick="showGreeting()">Generate Greeting</button>
+
+<div id="greeting" class="glow-text" style="display:none;"></div>
+<button id="shareBtn" style="display:none;" onclick="shareGreeting()">📤 Share Greeting</button>
+
+<script>
+function showGreeting() {
+    let name = document.getElementById("nameInput").value.trim();
+    if (name === "") {
+        alert("Please enter your name!");
+        return;
+    }
+    document.getElementById("greeting").innerHTML = `Happy Independence Day, ${name}! 🎉`;
+    document.getElementById("greeting").style.display = "block";
+    document.getElementById("shareBtn").style.display = "inline-block";
+}
+
+function shareGreeting() {
+    let text = document.getElementById("greeting").innerText;
+    if (navigator.share) {
+        navigator.share({
+            title: "15 August Greeting",
+            text: text,
+            url: window.location.href
+        });
+    } else {
+        alert("Sharing not supported on this device. You can copy and share manually.");
+    }
+}
+</script>
+
+</body>
+</html>
